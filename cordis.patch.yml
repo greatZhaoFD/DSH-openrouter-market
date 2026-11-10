@@ -1,0 +1,10 @@
+- insert:
+    - id: openrouter-models
+      name: dsh-openrouter-models
+      config:
+        apiBaseUrl: https://openrouter.ai/api/v1
+        apiKeyEnv: OPENROUTER_API_KEY
+        modelsTtlMs: 21600000
+        endpointsTtlMs: 900000
+        timeoutMs: 25000
+        enableRouting: false
