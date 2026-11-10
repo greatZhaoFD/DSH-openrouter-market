@@ -1,4 +1,4 @@
-# OpenRouter 模型库 · DSH 插件
+# DSH-openrouter-market
 
 在 DeepSeek Harness 的「设置 → Models」中浏览 OpenRouter 模型和 Provider，保存分模型路由，并将勾选的模型合并到 DSH 的 OpenRouter 配置。
 
