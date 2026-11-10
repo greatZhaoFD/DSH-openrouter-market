@@ -76,12 +76,12 @@
       },
       "versions": [
         {
-          "version": "0.2.0",
-          "publishTimestamp": 1794321148,
+          "version": "0.2.1",
+          "publishTimestamp": 1794326276,
           "source": {
             "type": "git",
             "url": "https://github.com/greatZhaoFD/DSH-openrouter-market",
-            "commit": "18f442f76fc5e8d942bd77ba206069bd8850dedf"
+            "commit": "806668c7852c7ed496c38cc2f88395b7e251dd04"
           }
         }
       ]
