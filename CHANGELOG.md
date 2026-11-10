@@ -4,6 +4,43 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-11-10
+
+### Added
+
+- A result toast in the top-right after **Import into DSH config** (and after a
+  route probe), so a successful import no longer only appends a line at the
+  bottom of a long list.
+- A **Test route** button per model, backed by a new
+  `GET /api/openrouter-models/probe?model=<id>` route: it sends a one-token
+  request with the saved strategy and reports the provider that actually served
+  it, plus the injected `provider` object. This makes it possible to confirm
+  routing without reading OpenRouter's activity dashboard.
+- A read-only **Configured** page, rendered from the DSH config file's models,
+  the routing store and OpenRouter provider data: configured models with the
+  provider order that will actually be used (`order` / `only` narrow it), and
+  provider node details only — no catalogue controls, no routing editor.
+- Clicking anywhere on a model row now expands its provider list; the model
+  table has separate **Config** and **Routing** status columns (Configured /
+  Not configured, Routed / Route), and every page opens with rows collapsed.
+
+### Changed
+
+- `routing.json` and `host-alive.json` are written with two-space indentation
+  and a trailing newline, so saved routing policies can be read and diffed by
+  hand. A minified file left behind by 0.2.0 is reformatted once when the plugin
+  loads it. Cache files (`models.json`, `endpoints-*.json`) stay minified.
+- `enableRouting` now defaults to `true`: strategies saved in the routing panel
+  take effect immediately instead of requiring a profile override and a
+  restart. Set `enableRouting: false` in a profile patch to skip the global
+  `fetch` wrapper entirely.
+
+### Fixed
+
+- The code default for `enableRouting` disagreed with the shipped bundle patch
+  (`false` in the patch, `true` in `DEFAULTS`); both now say `true`, matching the
+  documented behaviour.
+
 ## [0.2.0] - 2026-11-10
 
 ### Added

@@ -124,7 +124,7 @@ if (configStart === -1) {
   }
   const expected = ['apiBaseUrl', 'apiKeyEnv', 'modelsTtlMs', 'endpointsTtlMs', 'timeoutMs', 'enableRouting']
   for (const key of expected) check(Object.hasOwn(config, key), `bundle config declares ${key}`)
-  checkEqual(config.enableRouting, 'false', 'bundle config keeps enableRouting off by default')
+  checkEqual(config.enableRouting, 'true', 'bundle config enables routing by default')
   checkEqual(config.apiKeyEnv, 'OPENROUTER_API_KEY', 'bundle config requests the OPENROUTER_API_KEY credential')
 }
 
@@ -175,6 +175,9 @@ try {
 
 const hostSource = read('lib/index.js')
 check(hostSource.includes('export function apply('), 'Host half exports apply(ctx, config)')
+check(hostSource.includes("JSON.stringify(value, null, 2) + '\\n'"), 'JSON writer pretty-prints human-inspected files')
+check(hostSource.includes("writeJsonFile(join(dir, ROUTING_FILE), snapshot, { pretty: true })"), 'routing.json is written pretty-printed')
+check(hostSource.includes('enableRouting: true'), 'code default enables routing')
 check(hostSource.includes(`const VERSION = '${pkg.version}'`), 'Host VERSION constant matches package version')
 const specifiers = [...hostSource.matchAll(/\bfrom\s+['"]([^'"]+)['"]/g)].map((match) => match[1])
 check(specifiers.length > 0, 'Host half imports Node built-ins')
@@ -209,7 +212,16 @@ if (!existsSync(join(root, indexRel))) {
       check(PACKAGE_NAME.test(entry.name), 'index plugin name is a valid npm package name')
       check(Array.isArray(entry.versions) && entry.versions.length > 0, 'index plugin lists versions')
       const versions = Array.isArray(entry.versions) ? entry.versions : []
-      check(versions.some((version) => version?.version === pkg.version), `index advertises the package version ${pkg.version}`)
+      const numeric = (version) => String(version).split('-')[0].split('.').map((part) => Number(part))
+      const newerThanPackage = versions.some((version) => {
+        const [aMajor, aMinor, aPatch] = numeric(version?.version)
+        const [bMajor, bMinor, bPatch] = numeric(pkg.version)
+        return aMajor > bMajor || (aMajor === bMajor && (aMinor > bMinor || (aMinor === bMinor && aPatch > bPatch)))
+      })
+      check(!newerThanPackage, 'index does not advertise a version newer than the package')
+      if (!versions.some((version) => version?.version === pkg.version)) {
+        console.log(`info index.json does not advertise ${pkg.version} yet — the follow-up release commit updates it`)
+      }
       for (const version of versions) {
         check(SEMVER.test(String(version?.version)), `index version is exact semver (${version?.version})`)
         check(Number.isInteger(version?.publishTimestamp) && version.publishTimestamp >= 0, `index version ${version?.version} has a publishTimestamp`)

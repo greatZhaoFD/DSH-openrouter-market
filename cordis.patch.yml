@@ -17,7 +17,8 @@
         modelsTtlMs: 21600000
         endpointsTtlMs: 900000
         timeoutMs: 25000
-        # Off by default: the wrapper that injects saved routing strategies
-        # into chat requests is opt-in. Flip to true in a profile override to
-        # apply saved strategies at request time.
-        enableRouting: false
+        # On by default: per-model strategies saved in the panel are injected
+        # into requests addressed to the OpenRouter host, so configuring routing
+        # has an effect without extra setup. Override to false in a profile
+        # patch to skip the global fetch wrapper entirely.
+        enableRouting: true

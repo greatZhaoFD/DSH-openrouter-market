@@ -1,6 +1,6 @@
 {
   "name": "dsh-openrouter-market",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Browse the live OpenRouter catalogue in DSH Settings models and merge selected models into the DSH OpenRouter model configuration.",
   "keywords": [
     "dsh",
