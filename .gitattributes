@@ -1,0 +1,16 @@
+# Normalize every text file to LF so the published bundle is identical on
+# Windows, macOS and Linux checkouts.
+* text=auto eol=lf
+
+# Keep binary assets byte-for-byte.
+*.png binary
+*.webp binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+*.tgz binary
+*.tar.gz binary
