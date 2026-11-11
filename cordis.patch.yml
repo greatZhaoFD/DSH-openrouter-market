@@ -1,10 +1,24 @@
+# dsh-openrouter-market bundle patch (official DSH plugin bundle format).
+#
+# The row mounts the Host half (data routes + routing policy store); the
+# package's `dsh.client` manifest loads the Client half into the
+# "settings.models.footer" and "shell.overlay" slots. Install this package
+# through the DSH Plugin Manager / Plugins page, a plugin market index, or
+# `dsh plugin add` — not by hand-editing a profile patch alongside it.
 - insert:
     - id: openrouter-models
-      name: dsh-openrouter-market
+      name: 'dsh-openrouter-market'
       config:
+        # OpenRouter API root. Change only for a compatible proxy.
         apiBaseUrl: https://openrouter.ai/api/v1
+        # Name of the credential DSH supplies; the key itself stays in DSH.
         apiKeyEnv: OPENROUTER_API_KEY
+        # Catalogue cache lifetimes: 6 h for models, 15 min for provider data.
         modelsTtlMs: 21600000
         endpointsTtlMs: 900000
         timeoutMs: 25000
-        enableRouting: false
+        # On by default: per-model strategies saved in the panel are injected
+        # into requests addressed to the OpenRouter host, so configuring routing
+        # has an effect without extra setup. Override to false in a profile
+        # patch to skip the global fetch wrapper entirely.
+        enableRouting: true

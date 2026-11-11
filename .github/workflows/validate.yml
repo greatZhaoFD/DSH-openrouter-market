@@ -1,0 +1,23 @@
+name: Validate
+
+on:
+  push:
+    branches: ['**']
+    tags-ignore: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Bundle smoke checks
+        run: node test/smoke.mjs
+      - name: Show packed contents
+        run: npm pack --dry-run

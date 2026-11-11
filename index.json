@@ -1,0 +1,90 @@
+{
+  "format": 1,
+  "title": {
+    "en": "greatZhaoFD DSH plugins",
+    "zh": "greatZhaoFD DSH 插件"
+  },
+  "description": {
+    "en": "DSH plugins published by greatZhaoFD. Add this URL as a custom plugin index in DSH to install from the Discover tab.",
+    "zh": "greatZhaoFD 发布的 DSH 插件索引。在 DSH 插件页把它添加为自定义插件索引，即可在 Discover 标签页直接安装。"
+  },
+  "metadata": {
+    "categories": {
+      "models": {
+        "title": {
+          "en": "Models",
+          "zh": "模型"
+        }
+      }
+    },
+    "labels": {
+      "openrouter": {
+        "title": {
+          "en": "OpenRouter",
+          "zh": "OpenRouter"
+        }
+      },
+      "web-ui": {
+        "title": {
+          "en": "Web UI",
+          "zh": "网页界面"
+        }
+      }
+    },
+    "sortKeys": {
+      "added": {
+        "title": {
+          "en": "Added",
+          "zh": "收录时间"
+        },
+        "order": "desc"
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "dsh-openrouter-market",
+      "title": {
+        "en": "OpenRouter model hub",
+        "zh": "OpenRouter 模型库"
+      },
+      "description": {
+        "en": "Browse the live OpenRouter catalogue in DSH Settings → Models and merge picked models into the DSH OpenRouter model configuration.",
+        "zh": "在「设置 → Models」里浏览 OpenRouter 实时模型库（含各家 Provider 价格、量化、可用性），把勾选的模型合并进 DSH 的 OpenRouter 模型配置。"
+      },
+      "icon": "icon.svg",
+      "author": "greatZhaoFD",
+      "homepage": "https://github.com/greatZhaoFD/DSH-openrouter-market#readme",
+      "repository": {
+        "url": "https://github.com/greatZhaoFD/DSH-openrouter-market"
+      },
+      "metadata": {
+        "category": "models",
+        "keywords": [
+          "openrouter",
+          "models",
+          "model catalog",
+          "model routing"
+        ],
+        "labels": [
+          "openrouter",
+          "web-ui"
+        ],
+        "sortKeys": {
+          "added": 1
+        }
+      },
+      "versions": [
+        {
+          "version": "0.2.1",
+          "publishTimestamp": 1794326276,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/greatZhaoFD/DSH-openrouter-market",
+            "commit": "806668c7852c7ed496c38cc2f88395b7e251dd04"
+          }
+        }
+      ]
+    }
+  ]
+}

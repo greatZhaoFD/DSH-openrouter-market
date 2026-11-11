@@ -1,12 +1,35 @@
 {
   "name": "dsh-openrouter-market",
-  "version": "0.1.1",
-  "private": true,
+  "version": "0.2.1",
+  "description": "Browse the live OpenRouter catalogue in DSH Settings models and merge selected models into the DSH OpenRouter model configuration.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "openrouter",
+    "models",
+    "catalog",
+    "router",
+    "web-ui"
+  ],
+  "author": "greatZhaoFD",
+  "license": "MIT",
+  "homepage": "https://github.com/greatZhaoFD/DSH-openrouter-market#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greatZhaoFD/DSH-openrouter-market.git"
+  },
+  "bugs": {
+    "url": "https://github.com/greatZhaoFD/DSH-openrouter-market/issues"
+  },
   "type": "module",
-  "description": "Browse the live OpenRouter catalog and add curated models to the DSH model configuration.",
+  "main": "lib/index.js",
+  "icon": "./icon.svg",
   "exports": {
     ".": "./lib/index.js",
     "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json",
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg"
   },
@@ -16,9 +39,22 @@
     "cordis.patch.yml",
     "locale/*.json",
     "icon.svg",
+    "assets/icons/*",
     "README.md",
-    "assets/icons/*"
+    "README.en.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "scripts": {
+    "test": "node test/smoke.mjs",
+    "pack:check": "npm pack --dry-run"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dsh": {
     "manifestVersion": 1,
     "bundle": {
