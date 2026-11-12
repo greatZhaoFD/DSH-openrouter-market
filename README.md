@@ -14,8 +14,6 @@
 
 ## 安装
 
-> **当前状态**：这批改动还在 PR 分支 `feat/official-plugin-bundle` 上，`v0.2.1` 尚未发布 Release。发布前请从分支安装（方式 1 的分支索引地址，或 `dsh plugin --profile web add "https://github.com/greatZhaoFD/DSH-openrouter-market.git#feat/official-plugin-bundle"`）；合并到 `main` 并发布后，下面的 `main` / Release 地址才生效。
-
 本插件是标准 DSH 插件包（`package.json` 声明 `dsh.bundle.patch` 与 `dsh.client`），支持 DSH 官方插件安装通道。**任选一种方式，不要重复安装**（例如既用插件页安装、又在 profile 的 `cordis.patch.yml` 里手动插一份）。
 
 ### 方式 1：插件索引 / 发现页（推荐，图形界面）
@@ -24,7 +22,7 @@
 2. 切到 **发现**（Discover）标签页，添加索引地址：
 
    ```text
-   https://raw.githubusercontent.com/greatZhaoFD/DSH-openrouter-market/main/index.json
+   https://raw.githubusercontent.com/greatZhaoFD/dsh-openrouter-market/main/index.json
    ```
 
    （当前分支尚未合并时，可用分支地址 `.../feat/official-plugin-bundle/index.json` 先行测试。）
@@ -34,13 +32,13 @@
 ### 方式 2：命令行安装（web 或自定义 profile）
 
 ```powershell
-dsh plugin --profile web add https://github.com/greatZhaoFD/DSH-openrouter-market.git
+dsh plugin --profile web add https://github.com/greatZhaoFD/dsh-openrouter-market.git
 ```
 
 也可以使用精确版本（Git 提交）：
 
 ```powershell
-dsh plugin --profile web add "https://github.com/greatZhaoFD/DSH-openrouter-market.git#<commit>"
+dsh plugin --profile web add "https://github.com/greatZhaoFD/dsh-openrouter-market.git#<commit>"
 ```
 
 安装后按提示重启（Client 侧代码需要重启进程才会加载）。
@@ -51,8 +49,9 @@ dsh plugin --profile web add "https://github.com/greatZhaoFD/DSH-openrouter-mark
 
 **设置 → 插件** → 安装 → 粘贴以下任一地址：
 
-- GitHub 仓库：`https://github.com/greatZhaoFD/DSH-openrouter-market.git`
-- 发布包（Releases 中的 `.tgz`）：`https://github.com/greatZhaoFD/DSH-openrouter-market/releases/download/v0.2.1/dsh-openrouter-market-0.2.1.tgz`
+- GitHub 仓库：`https://github.com/greatZhaoFD/dsh-openrouter-market.git`
+- 测试分支：`https://github.com/greatZhaoFD/dsh-openrouter-market.git#feat/official-plugin-bundle`
+- 发布包（Releases 中的 `.tgz`）：`https://github.com/greatZhaoFD/dsh-openrouter-market/releases/download/v0.2.1/dsh-openrouter-market-0.2.1.tgz`
 
 安装完成后完全退出并重启 DSH。
 

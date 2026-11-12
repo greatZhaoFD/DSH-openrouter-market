@@ -14,8 +14,6 @@ The repository ships the built bundle (`lib/index.js`, `lib/client.js`); there i
 
 ## Install
 
-> **Current state**: these changes sit on the PR branch `feat/official-plugin-bundle`; `v0.2.1` has no Release yet. Until a release is published, install from the branch (the branch index URL in method 1, or `dsh plugin --profile web add "https://github.com/greatZhaoFD/DSH-openrouter-market.git#feat/official-plugin-bundle"`). The `main` / Release addresses below become valid after the PR is merged and released.
-
 This package is a standard DSH bundle and can be installed through any official plugin channel. **Pick exactly one method**; do not install it twice (for example through the Plugins page *and* a hand-written row in a profile `cordis.patch.yml`).
 
 ### 1. Plugin index / Discover tab (recommended, GUI)
@@ -24,7 +22,7 @@ This package is a standard DSH bundle and can be installed through any official 
 2. In the **Discover** tab, add this index URL:
 
    ```text
-   https://raw.githubusercontent.com/greatZhaoFD/DSH-openrouter-market/main/index.json
+   https://raw.githubusercontent.com/greatZhaoFD/dsh-openrouter-market/main/index.json
    ```
 
    (While the branch is unmerged use `.../feat/official-plugin-bundle/index.json`.)
@@ -34,13 +32,13 @@ This package is a standard DSH bundle and can be installed through any official 
 ### 2. Command line (web or a custom profile)
 
 ```powershell
-dsh plugin --profile web add https://github.com/greatZhaoFD/DSH-openrouter-market.git
+dsh plugin --profile web add https://github.com/greatZhaoFD/dsh-openrouter-market.git
 ```
 
 A commit-pinned install also works:
 
 ```powershell
-dsh plugin --profile web add "https://github.com/greatZhaoFD/DSH-openrouter-market.git#<commit>"
+dsh plugin --profile web add "https://github.com/greatZhaoFD/dsh-openrouter-market.git#<commit>"
 ```
 
 Restart afterwards: the Client bundle is loaded at process start.
@@ -51,8 +49,9 @@ Restart afterwards: the Client bundle is loaded at process start.
 
 **Settings → Plugins → Install** and paste either:
 
-- the repository: `https://github.com/greatZhaoFD/DSH-openrouter-market.git`
-- the release tarball: `https://github.com/greatZhaoFD/DSH-openrouter-market/releases/download/v0.2.1/dsh-openrouter-market-0.2.1.tgz`
+- the repository: `https://github.com/greatZhaoFD/dsh-openrouter-market.git`
+- test branch: `https://github.com/greatZhaoFD/dsh-openrouter-market.git#feat/official-plugin-bundle`
+- the release tarball: `https://github.com/greatZhaoFD/dsh-openrouter-market/releases/download/v0.2.1/dsh-openrouter-market-0.2.1.tgz`
 
 Then fully quit and restart DSH.
 
