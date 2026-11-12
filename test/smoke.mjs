@@ -47,7 +47,7 @@ check(pkg.private !== true, 'package is not private (installable / publishable)'
 check(pkg.type === 'module', 'package is an ES module')
 check(typeof pkg.description === 'string' && pkg.description.trim() !== '', 'package description is present')
 check(pkg.license === 'MIT', 'package license is MIT')
-check(pkg.repository?.url === 'git+https://github.com/greatZhaoFD/DSH-openrouter-market.git', 'repository URL')
+check(pkg.repository?.url === 'git+https://github.com/greatZhaoFD/dsh-openrouter-market.git', 'repository URL')
 check(typeof pkg.engines?.node === 'string' && pkg.engines.node !== '', 'engines.node is declared')
 
 // ----------------------------------------------------------------- bundle info

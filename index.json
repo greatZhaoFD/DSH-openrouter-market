@@ -54,9 +54,9 @@
       },
       "icon": "icon.svg",
       "author": "greatZhaoFD",
-      "homepage": "https://github.com/greatZhaoFD/DSH-openrouter-market#readme",
+      "homepage": "https://github.com/greatZhaoFD/dsh-openrouter-market#readme",
       "repository": {
-        "url": "https://github.com/greatZhaoFD/DSH-openrouter-market"
+        "url": "https://github.com/greatZhaoFD/dsh-openrouter-market"
       },
       "metadata": {
         "category": "models",
@@ -80,7 +80,7 @@
           "publishTimestamp": 1794326276,
           "source": {
             "type": "git",
-            "url": "https://github.com/greatZhaoFD/DSH-openrouter-market",
+            "url": "https://github.com/greatZhaoFD/dsh-openrouter-market",
             "commit": "806668c7852c7ed496c38cc2f88395b7e251dd04"
           }
         }

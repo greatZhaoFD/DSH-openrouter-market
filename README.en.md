@@ -6,6 +6,8 @@ An official-format **DeepSeek Harness plugin bundle** that adds an **OpenRouter 
 
 The repository ships the built bundle (`lib/index.js`, `lib/client.js`); there is no build step, so an install is immediately runnable.
 
+![OpenRouter model catalog in DSH showing provider comparisons and routing options](docs/screenshots/model-catalog.png)
+
 ## Compatibility
 
 - Target runtime: DSH 0.2.x, using the official plugin-package model (`dsh.bundle.patch` + `dsh.client`); metadata and loading paths validated against DSH Desktop `0.2.2-rc.1` and `@deepseek-ai/dsh` CLI `0.2.0-rc.2`.
@@ -14,72 +16,18 @@ The repository ships the built bundle (`lib/index.js`, `lib/client.js`); there i
 
 ## Install
 
-> **Current state**: these changes sit on the PR branch `feat/official-plugin-bundle`; `v0.2.1` has no Release yet. Until a release is published, install from the branch (the branch index URL in method 1, or `dsh plugin --profile web add "https://github.com/greatZhaoFD/DSH-openrouter-market.git#feat/official-plugin-bundle"`). The `main` / Release addresses below become valid after the PR is merged and released.
+1. In DSH Desktop, open **Plugins → Add plugin**.
+2. Choose **npm registry**, enter `dsh-openrouter-market`, and select **Install**.
+3. Quit and restart DSH, then open **Settings → Models**.
 
-This package is a standard DSH bundle and can be installed through any official plugin channel. **Pick exactly one method**; do not install it twice (for example through the Plugins page *and* a hand-written row in a profile `cordis.patch.yml`).
-
-### 1. Plugin index / Discover tab (recommended, GUI)
-
-1. Open **Plugins** in the sidebar and switch on **Custom plugin indexes**.
-2. In the **Discover** tab, add this index URL:
-
-   ```text
-   https://raw.githubusercontent.com/greatZhaoFD/DSH-openrouter-market/main/index.json
-   ```
-
-   (While the branch is unmerged use `.../feat/official-plugin-bundle/index.json`.)
-3. Select **OpenRouter model hub** → **Install**.
-4. Fully quit and restart DSH (Desktop must exit completely, tray icon included), then open it from the bottom of Settings → Models.
-
-### 2. Command line (web or a custom profile)
-
-```powershell
-dsh plugin --profile web add https://github.com/greatZhaoFD/DSH-openrouter-market.git
-```
-
-A commit-pinned install also works:
-
-```powershell
-dsh plugin --profile web add "https://github.com/greatZhaoFD/DSH-openrouter-market.git#<commit>"
-```
-
-Restart afterwards: the Client bundle is loaded at process start.
-
-> The Desktop `desktop` profile is managed exclusively by the Electron app, so the CLI cannot install into it; use method 1 or 3 on Desktop.
-
-### 3. Desktop Plugins page
-
-**Settings → Plugins → Install** and paste either:
-
-- the repository: `https://github.com/greatZhaoFD/DSH-openrouter-market.git`
-- the release tarball: `https://github.com/greatZhaoFD/DSH-openrouter-market/releases/download/v0.2.1/dsh-openrouter-market-0.2.1.tgz`
-
-Then fully quit and restart DSH.
-
-### 4. Local directory / packed tarball
-
-```text
-plugin_manager install_bundle(target="D:\\path\\to\\DSH-openrouter-market")
-```
-
-The plugin page's install field also accepts an absolute local path (directory, or a `.tgz` produced by `npm pack`).
-
-### 5. npm (after publishing)
-
-```powershell
-dsh plugin --profile web add dsh-openrouter-market@0.2.1
-```
-
-`package.json` already carries `publishConfig`, `files` and the `dsh` manifest, so `npm publish` is the only missing step.
+Installation by package name will be available after the package is published to the public npm registry. Before then, use the GitHub option in the same installer and enter `https://github.com/greatZhaoFD/dsh-openrouter-market.git`. Choose one installation method.
 
 ## Usage
 
-- Expand **OpenRouter model hub** at the bottom of Settings → Models, then expand a model for provider price, quantization and availability. Refresh updates both the catalogue and any expanded provider data.
-- The panel has two pages: **Catalogue** (browse / filter / import) and **Configured** (read-only). The Configured page is rendered from the DSH config file's models + `routing.json` strategies + OpenRouter provider data + bundled icons: it lists configured models with the provider order that will actually be used (with `order` / `only` only the selected providers are shown; otherwise all providers, input price ascending by default). Expanding a model shows provider node details only (price / cache / latency / throughput / uptime / quantization) and no routing controls.
-- The routing area stores hard constraints, strategy, performance preference and failover; **Save** writes the policy into plugin storage and it takes effect immediately (see [Where routing lives](#where-routing-lives)). Clicking anywhere on a model row expands its providers; the two right-hand columns show whether the model is in the DSH config and whether routing is configured.
-- **Import into DSH config** merges the selected models into the `llm-pi-ai` OpenRouter route. The import keeps only the `text` / `image` modalities DSH model configuration supports; the catalogue itself still shows OpenRouter's raw capability data. A result toast in the top-right reports how many models were added, updated or skipped.
-- Each model's routing area has a **Test route** button: it sends a one-token probe with the saved strategy and reports the provider that actually served it — the most direct way to confirm routing works and which vendor handled the request.
-- Request-time routing injection is **on by default**: saved strategies are injected into chat requests addressed to OpenRouter. Override `enableRouting: false` in a profile patch and restart to disable the wrapper entirely.
+1. **Configure your OpenRouter API key.** In DSH, go to **Settings → Models → Add model provider**, choose OpenRouter, and save your API key. If you already have an `openrouter` provider, edit it instead. By default the plugin reads the `OPENROUTER_API_KEY` DSH credential.
+2. **Manage the model list through the plugin.** When first switching over, clear the preselected models under **Available models** in DSH's built-in OpenRouter provider settings. Keep the provider and its API key, then use the plugin to import the models you want. You can review imported models in the plugin's local configuration tab.
+3. **Import the models you need.** Open **OpenRouter Models** at the bottom of **Settings → Models**. Find a model and expand it using the arrow on the left. Compare provider prices, latency, throughput, and uptime, then choose **Import to DSH config** for that model. It will appear in the DSH model picker.
+4. **Configure routing if needed.** Expand a model, set `Only`, `Ignore`, manual ordering, or metric sorting, and choose **Save**. In the local configuration tab, expand an imported model to review its saved strategy or choose **Test route**. The test sends a live request and shows the provider that answered.
 
 ## Configuration
 
@@ -134,7 +82,7 @@ A strategy applies when the request is a `POST`, the host equals `apiBaseUrl`'s 
 
 Health: `http://127.0.0.1:<port>/api/openrouter-models/routing/status` reports `configEnabled: true` and an `injected` counter that grows after chats; `/api/openrouter-models/routing` lists every strategy.
 
-To verify routing and the serving provider: `http://127.0.0.1:<port>/api/openrouter-models/probe?model=<model id>` sends a one-token request with the saved strategy and returns `provider` (the provider that served it), `appliedProvider` (the injected provider object) and `usage`. The panel's **Test route** button calls the same endpoint; the probe also goes through the real `fetch` injection path, so the `injected` counter increments.
+To verify routing and the serving provider: `http://127.0.0.1:<port>/api/openrouter-models/probe?model=<model id>` sends a one-token request with the saved strategy and returns `provider` (the provider that served it), `appliedProvider` (the injected provider object) and `usage`. The panel's **Test route** button calls the same endpoint.
 
 ## Upgrade and uninstall
 

@@ -14,13 +14,13 @@
   ],
   "author": "greatZhaoFD",
   "license": "MIT",
-  "homepage": "https://github.com/greatZhaoFD/DSH-openrouter-market#readme",
+  "homepage": "https://github.com/greatZhaoFD/dsh-openrouter-market#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/greatZhaoFD/DSH-openrouter-market.git"
+    "url": "git+https://github.com/greatZhaoFD/dsh-openrouter-market.git"
   },
   "bugs": {
-    "url": "https://github.com/greatZhaoFD/DSH-openrouter-market/issues"
+    "url": "https://github.com/greatZhaoFD/dsh-openrouter-market/issues"
   },
   "type": "module",
   "main": "lib/index.js",
@@ -40,6 +40,7 @@
     "locale/*.json",
     "icon.svg",
     "assets/icons/*",
+    "docs/screenshots/model-catalog.png",
     "README.md",
     "README.en.md",
     "CHANGELOG.md",
