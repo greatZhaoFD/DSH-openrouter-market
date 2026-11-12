@@ -40,6 +40,7 @@
     "locale/*.json",
     "icon.svg",
     "assets/icons/*",
+    "docs/screenshots/model-catalog.png",
     "README.md",
     "README.en.md",
     "CHANGELOG.md",
