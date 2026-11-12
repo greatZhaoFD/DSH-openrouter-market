@@ -15,12 +15,12 @@
 - Node.js ≥ 20.18.0。
 
 ## 安装
-
+方式一：
 1. 在 DSH 桌面端打开 **插件 → 添加插件**。
-2. 选择 **npm registry**，输入 `dsh-openrouter-market`，点击 **安装**。
+2. 输入 `dsh-openrouter-market`，点击 **安装**。
 3. 完全退出并重新启动 DSH，再打开 **设置 → 模型**。
-
-按包名安装需要等插件发布到公开 npm registry。发布前可在同一个安装入口选择 GitHub，输入 `https://github.com/greatZhaoFD/dsh-openrouter-market.git`。任选一种方式安装即可。
+方式二：
+在添加插件栏输入 `https://github.com/greatZhaoFD/dsh-openrouter-market.git`
 
 ## 使用
 
